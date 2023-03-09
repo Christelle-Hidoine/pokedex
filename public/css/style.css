@@ -1,3 +1,28 @@
 body {
 font-family: 'Bree Serif', serif;
+background-color: #C14040;
+}
+
+.navbar {
+    color: #C14040;
+    font-size: 1.3em;
+    margin: 10px 20px 10px;
+    border-radius: 30px;
+}
+
+.container-card {
+    margin: 10px;
+}
+div.pokemon {
+    background-color: #982C2C ;
+}
+
+.card-title {
+    color: #BCA4D3;
+    font-size: 1.5em;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 30px;
 }
