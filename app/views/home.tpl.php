@@ -8,12 +8,14 @@ $pokemonsList = $viewData['pokemon'];
     foreach ($pokemonsList as $pokemonElement) {
         ?>
         <div class="col text-center">
-          <div class="card h-100 pokemon">
-            <img src="<?= $baseUri ?>img/<?= $pokemonElement->getNumber() ?>.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"> #<?= $pokemonElement->getNumber() ?>  <?= $pokemonElement->getName() ?></h5>
+          <a href="<?= $router->generate('details', ["number" => $pokemonElement->getNumber()]) ?>" target="_blank" rel="noopener noreferrer">
+            <div class="card h-100 pokemon">
+              <img src="<?= $baseUri ?>img/<?= $pokemonElement->getNumber() ?>.png" class="card-img-top" alt="image d'un pokemon">
+              <div class="card-body">
+                <h5 class="card-title"> #<?= $pokemonElement->getNumber() ?>  <?= $pokemonElement->getName() ?></h5>
+              </div>
             </div>
-          </div>
+          </a>
         </div>  
     <?php
     }

@@ -10,6 +10,15 @@ background-color: #C14040;
     border-radius: 30px;
 }
 
+.navbar-collapse {
+    color: #C14040;
+    font-size: 0.8em;
+}
+
+a.nav-link {
+    color: #C14040;
+}
+
 .container-card {
     margin: 10px;
 }

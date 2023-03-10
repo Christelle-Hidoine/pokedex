@@ -2,10 +2,15 @@
 
 namespace Pokedex\Controllers;
 
+use Pokedex\Models\Pokemon;
+
 class CatalogController extends CoreController
 {
-    public function details($id)
+    public function details($number)
     {
-        $this->show('details');
+        $pokemonModel = new Pokemon();
+        $pokemonNumber = $pokemonModel->find($number);
+
+        $this->show('details', ['pokemonNumber' => $pokemonNumber]);
     }
 }

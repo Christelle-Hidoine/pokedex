@@ -159,6 +159,7 @@ class Pokemon extends CoreModel
      * Méthode pour récupérer tous les datas des pokémons avec option tri
      *
      * @param string $sort
+     * @return Pokemon[]
      */
     public function findAll($sort = "")
     {
@@ -172,6 +173,24 @@ class Pokemon extends CoreModel
 
         $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, Pokemon::class);
 
+        return $results;
+    }
+    
+    /**
+     * Méthode pour récupérer tous les datas d'un pokémon selon son number
+     *
+     * @param [int] $number
+     * @return Pokemon
+     */
+    public function find($number)
+    {
+        $pdo = Database::getPDO();
+
+        $sql = "SELECT * FROM `pokemon` WHERE `number` = $number";
+
+        $pdoStatement = $pdo->query($sql);
+
+        $results = $pdoStatement->fetchObject(Pokemon::class);
         return $results;
     }
 }

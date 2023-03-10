@@ -24,10 +24,10 @@ $router->map(
     'home'
 );
 
-// page DETAILS qui affiche un pokemon avec son type et ses stats
+// page DETAILS qui affiche un pokemon avec son type et ses stats selon son number
 $router->map(
     "GET",
-    "/details/[i:id]",
+    "/details/[i:number]",
     [
         'controller' => CatalogController::class,
         'method' => 'details'
@@ -43,13 +43,13 @@ if ($match) {
     $controller = new $match['target']['controller']();
     $method = $match['target']['method'];
 
-    // si le paramètre id existe et différent de null, alors on récupère dans $id
-    $id = $match['params']['id'] ?? null;
+    // si le paramètre number existe et différent de null, alors on récupère dans $number
+    $number = $match['params']['number'] ?? null;
 
     // dispatcher
-    // si l'id est différent de null alors on associe la méthode au controller
-    if ($id !== null) {
-        $controller->$method($id);
+    // si le number est différent de null alors on associe la méthode au controller
+    if ($number !== null) {
+        $controller->$method($number);
     } else {
         $controller->$method();
     }
