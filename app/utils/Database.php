@@ -1,4 +1,5 @@
 <?php
+
 namespace Pokedex\utils;
 
 use PDO;

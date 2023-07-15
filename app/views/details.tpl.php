@@ -1,9 +1,3 @@
-<?php
-
-$pokemonNumber = $viewData['pokemonNumber'];
-
-?>
-
 <h3>
     Détails de <?= $pokemonNumber->getName()?>
 </h3>

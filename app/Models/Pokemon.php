@@ -161,7 +161,7 @@ class Pokemon extends CoreModel
      * @param string $sort
      * @return Pokemon[]
      */
-    public function findAll($sort = "")
+    public static function findAll($sort = "")
     {
         $pdo = Database::getPDO();
 
@@ -170,10 +170,8 @@ class Pokemon extends CoreModel
             $sql .= " ORDER BY $sort";
         }
         $pdoStatement = $pdo->query($sql);
-
-        $results = $pdoStatement->fetchAll(PDO::FETCH_CLASS, Pokemon::class);
-
-        return $results;
+      
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS, self::class);
     }
     
     /**
