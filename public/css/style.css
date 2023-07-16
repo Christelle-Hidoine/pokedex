@@ -1,9 +1,16 @@
 body {
-font-family: 'Bree Serif', serif;
-background-color: #C14040;
+    font-family: 'Bree Serif', serif;
+    background-color: #C14040;
 }
 
 .navbar {
+    color: #C14040;
+    font-size: 1.3em;
+    margin: 10px 20px 10px;
+    border-radius: 30px;
+}
+
+.nav {
     color: #C14040;
     font-size: 1.3em;
     margin: 10px 20px 10px;
@@ -27,7 +34,7 @@ div.pokemon {
 }
 
 .card-title {
-    color: #BCA4D3;
+    color: white;
     font-size: 1.5em;
 }
 
@@ -39,3 +46,13 @@ div.pokemon {
 a {
     text-decoration: none;
 }
+
+.progress {
+    background-color: #632B2B;
+    height: 30px;
+}
+
+.progress-bar {
+    background-color: white;
+}
+

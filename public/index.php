@@ -1,25 +1,22 @@
 <?php
 
-use Pokedex\Controllers\CatalogController;
+
 use Pokedex\Controllers\ErrorController;
 use Pokedex\Controllers\MainController;
+use Pokedex\Controllers\PokemonController;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-// création d'un objet router sur la class Altorouter
+// Altorouter creates router in 1 call
 $router = new AltoRouter();
 
 if (array_key_exists('BASE_URI', $_SERVER)) {
-    // Alors on définit le basePath d'AltoRouter
     $router->setBasePath($_SERVER['BASE_URI']);
-    // ainsi, nos routes correspondront à l'URL, après la suite de sous-répertoire
-} else { // sinon
-    // On donne une valeur par défaut à $_SERVER['BASE_URI'] car c'est utilisé dans le CoreController
+} else {
     $_SERVER['BASE_URI'] = '/';
 }
 
-// Définition des routes avec la méthode map()
-// page HOME qui liste tous les pokemons
+// home page
 $router->map(
     "GET",
     "/",
@@ -30,20 +27,31 @@ $router->map(
     'home'
 );
 
-// page DETAILS qui affiche un pokemon avec son type et ses stats selon son number
+// pokemons by type page
+$router->map(
+    "GET",
+    "/type/[i:id]",
+    [
+        'controller' => PokemonController::class,
+        'method' => 'showType'
+    ],
+    'type-list'
+);
+
+// details Pokemon page
 $router->map(
     "GET",
     "/details/[i:number]",
     [
-        'controller' => CatalogController::class,
+        'controller' => PokemonController::class,
         'method' => 'details'
     ],
     'details'
 );
 
-// vérification des routes (si elle existe ou non)
 $match = $router->match();
 
+// dispatcher makes association between controller and method
 $dispatcher = new Dispatcher($match, '\App\Controllers\ErrorController::error404');
 
 $dispatcher->setControllersArguments($router, $match);
