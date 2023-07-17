@@ -16,12 +16,13 @@ class PokemonController extends CoreController
     {
         $pokemonModel = new Pokemon();
         $pokemonNumber = $pokemonModel->find($number);
+        $types = $pokemonModel->findTypesByPokemonNumber($number);
 
-        $this->show('details', ['pokemonNumber' => $pokemonNumber]);
+        $this->show('details', ['pokemonNumber' => $pokemonNumber, 'types' => $types]);
     }
 
     /**
-     * Method to display all pokemon according to one type
+     * Method to display all pokemon related to one type
      *
      * @param int $id
      * @return Pokemon[]

@@ -52,7 +52,7 @@ $router->map(
 $match = $router->match();
 
 // dispatcher makes association between controller and method
-$dispatcher = new Dispatcher($match, '\App\Controllers\ErrorController::error404');
+$dispatcher = new Dispatcher($match, '\Pokedex\Controllers\ErrorController::error404');
 
 $dispatcher->setControllersArguments($router, $match);
 

@@ -223,12 +223,37 @@ class Pokemon extends CoreModel
     {
         $pdo = Database::getPDO();
 
-        $sql = "SELECT * FROM `pokemon` WHERE `number` = $number";
+        $sql = "SELECT *
+                FROM `pokemon` 
+                WHERE `number` =". $number;
 
         $pdoStatement = $pdo->query($sql);
 
         $results = $pdoStatement->fetchObject(Pokemon::class);
         return $results;
+    }
+
+    /**
+     * Method to retrieve all types for a given Pokemon number
+     *
+     * @param int $number
+     * @return Type[]
+     */
+    public function findTypesByPokemonNumber($number)
+    {
+        $pdo = Database::getPDO();
+        
+        $sql = "SELECT *
+                FROM `pokemon_type`
+                INNER JOIN `type` ON type.id = pokemon_type.type_id
+                WHERE `pokemon_number` = :number
+                ORDER BY `name`";
+
+        $pdoStatement = $pdo->prepare($sql);
+        $pdoStatement->bindValue(':number', $number, PDO::PARAM_INT);
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS, Type::class);
     }
 
     /**
@@ -245,7 +270,7 @@ class Pokemon extends CoreModel
         FROM `pokemon`
         INNER JOIN `pokemon_type` ON pokemon.number = pokemon_type.pokemon_number
         INNER JOIN `type` ON type.id = pokemon_type.type_id
-        WHERE type.id =" . $typeId
+        WHERE type.id = " . $typeId
         ;
         if ($group !== "") {
             $sql .= " GROUP BY $group";

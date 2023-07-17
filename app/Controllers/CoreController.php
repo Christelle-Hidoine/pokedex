@@ -23,10 +23,9 @@ class CoreController
         foreach ($typeList as $typeElement) {
             $typeListById[$typeElement->getId()] = $typeElement;
         };
-        $pokemons = Pokemon::findAll("", 'pokemon.name');
+        
         
         $viewData['router'] = $this->router;
-        $viewData['currentPage'] = $viewName;
         $viewData['baseUri'] = $_SERVER['BASE_URI'];
         
         extract($viewData);
