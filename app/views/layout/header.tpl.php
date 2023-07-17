@@ -19,17 +19,19 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar navbar-brand" href="<?= $router->generate('home') ?>">Pokédex</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse  d-flex justify-content-end" id="navbarNavDropdown">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                         <ul class="navbar navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Liste Types de Pokémon
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">NOM DE TYPE DE POKEMON TODO</a></li>
+                                    <?php foreach ($typeList as $type) : ?>
+                                        <li style ="background-color: #<?= $type->getColor() ?>"><a class="dropdown-item" href="<?= $router->generate('type-list', ["id" => $type->getId()]) ?>"><?= $type->getName() ?></a></li>
+                                    <?php endforeach ?>
                                 </ul>
                             </li>
                         </ul>

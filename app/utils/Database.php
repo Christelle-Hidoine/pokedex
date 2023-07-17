@@ -4,15 +4,13 @@ namespace Pokedex\utils;
 
 use PDO;
 
-// Retenir son utilisation  => \Database::getPDO()
 // Design Pattern : Singleton
 class Database {
     /** @var PDO */
     private $dbh;
     private static $_instance;
     private function __construct() {
-        // Récupération des données du fichier de config
-        // la fonction parse_ini_file parse le fichier et retourne un array associatif
+
         $configData = parse_ini_file(__DIR__.'/../config.ini');
         
         try {
@@ -20,7 +18,7 @@ class Database {
                 "mysql:host={$configData['DB_HOST']};dbname={$configData['DB_NAME']};charset=utf8",
                 $configData['DB_USERNAME'],
                 $configData['DB_PASSWORD'],
-                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING) // Affiche les erreurs SQL à l'écran
+                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING) 
             );
         }
         catch(\Exception $exception) {
