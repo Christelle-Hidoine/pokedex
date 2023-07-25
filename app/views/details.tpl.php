@@ -13,9 +13,10 @@
                         <div class="card-body">
                             <h3 class="card-title fw-bold">#<?= $pokemonNumber->getNumber() ?> <?= $pokemonNumber->getName() ?></h3>
                             <?php foreach ($types as $type): ?>
-                                <a href="<?= $router->generate('type-list', ["id" => $type->getId()]) ?>"><span class="badge p-2 me-2 my-3 fw-light" style="background-color: #<?= $type->getColor() ?>">
-                                    <?= $type->getName() ?>
-                                </span></a>
+                                <a href="<?= $router->generate('type-list', ["id" => $type->getId()]) ?>">
+                                    <span class="badge p-2 me-2 my-3 fw-light" style="background-color: #<?= $type->getColor() ?>">
+                                        <?= $type->getName() ?>
+                                    </span></a>
                             <?php endforeach; ?>
                             <h4 class="card-title fw-bold">Statistiques</h5>
                             <div class="statistic row">
